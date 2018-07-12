@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import mysql.connector as mc
+from searchEssayWin import searchEssayWin
 import sys
 
 class selectDocWin(QtWidgets.QWidget):
@@ -18,9 +19,9 @@ class selectDocWin(QtWidgets.QWidget):
         self.initUI()
         self.widget = QtWidgets.QWidget()
         
-        self.selectdept = "*"                 #select dept
+        self.selectDept = "*"                 #select dept
         self.selectDocLv = "*"                #select docLv
-        self.selectedDoc = None
+        self.selectedDoc = None               #selected Doctor
     #-------------------------------------------
     #
     #            选择医生职称
@@ -66,7 +67,16 @@ class selectDocWin(QtWidgets.QWidget):
             self.pushButton_noDocLv.setStyleSheet("background-color:white;color:black")
             
             self.pushButton_noDocLv.setStyleSheet("background-color:blue;color:white")
-    
+            
+        #------------------SQL   查询----------------------------------------
+        db = mc.connect(host="localhost", user="root", password="zaq1XSW2cde3", database="electronicHealth")
+        cursor = db.cursor()
+        sql = "SELECT FROM 医生 \
+                WHERE (科室,职称) =  \
+                ('%s','%s')" % \
+                (self.selectDept,self.selectDocLv)
+        cursor.execute(sql)
+        doctorResult = cursor.fetchall()
     #-------------------------------------------
     #
     #            选择科室
@@ -149,7 +159,12 @@ class selectDocWin(QtWidgets.QWidget):
     def on_click_readEssay(self):
         #--------------New a Window-----------------------
         #--------------select all essays which are written by --selectedDoc--  -------------
+        self.widget = searchEssayWin(self.selectedDoc)
+        self.widget.show()
     
+    
+    def listClicked(self):
+        self.selectedDoc = self.listWidget.selectedItems()
     
     
     def initUI(self):
@@ -220,9 +235,10 @@ class selectDocWin(QtWidgets.QWidget):
         self.pushButton_fuChanKe.setObjectName("pushButton_11")
         self.pushButton_fuChanKe.clicked.connect(lambda:self.on_click_selectDept(self.pushButton_fuChanKe))
         #--------------------------Searching Results-----------------------------
-        self.listView = QtWidgets.QListView(self)
-        self.listView.setGeometry(QtCore.QRect(30, 240, 1031, 401))
-        self.listView.setObjectName("listView")
+        self.listWidget = QtWidgets.QListWidget(self)
+        self.listWidget.setGeometry(QtCore.QRect(30, 240, 1031, 401))
+        self.listWidget.setObjectName("listWidget")
+        self.listWidget.itemClicked.connect(self.listClicked)
         #--------------------------Read Essay Button-----------------------------
         self.readEssay = QtWidgets.QPushButton(self.groupBox)
         self.readEssay.setGeometry(QtCore.QRect(920, 150, 93, 28))

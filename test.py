@@ -155,7 +155,8 @@ if __name__ == '__main__':
 """
 
 import sys
-from PyQt5.QtWidgets import QWidget,QDesktopWidget,QApplication,QPushButton
+from PyQt5.QtWidgets import QWidget,QDesktopWidget,QApplication,QPushButton,QListWidget
+from PyQt5 import QtCore
 
 class newWidget(QWidget):
     def __init__(self):
@@ -174,6 +175,10 @@ class Example(QWidget):
         
         self.initUI()
         self.neex = newWidget()
+        
+    def listClicked(self):
+        self.setWindowTitle(self.listWidget.selectedItems())
+        
     def initUI(self):
         
         self.resize(250,150)
@@ -186,6 +191,13 @@ class Example(QWidget):
         btn.setToolTip('This is a <b>QPushButton</b> widget')   
         btn.resize(btn.sizeHint())
         btn.clicked.connect(lambda:self.on_click(btn))
+        
+        
+        self.listWidget = QListWidget(self)
+        self.listWidget.setGeometry(QtCore.QRect(30, 240, 1031, 401))
+        self.listWidget.setObjectName("listWidget")
+        self.listWidget.addItems(['item1','item2'])
+        self.listWidget.itemClicked.connect(self.listClicked)
         self.show()
     def on_click(self,butn):
         butn.setStyleSheet("background-color:blue")
