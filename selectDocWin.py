@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import mysql.connector as mc
 from searchEssayWin import searchEssayWin
+from payingWin import payingWin
 import sys
 
 class selectDocWin(QtWidgets.QWidget):
@@ -18,6 +19,7 @@ class selectDocWin(QtWidgets.QWidget):
         
         self.initUI()
         self.widget = QtWidgets.QWidget()
+        self.money = 0
         
         self.selectDept = "*"                 #select dept
         self.selectDocLv = "*"                #select docLv
@@ -69,6 +71,7 @@ class selectDocWin(QtWidgets.QWidget):
             self.pushButton_noDocLv.setStyleSheet("background-color:blue;color:white")
             
         #------------------SQL   查询----------------------------------------
+        """
         db = mc.connect(host="localhost", user="root", password="zaq1XSW2cde3", database="electronicHealth")
         cursor = db.cursor()
         sql = "SELECT FROM 医生 \
@@ -77,6 +80,7 @@ class selectDocWin(QtWidgets.QWidget):
                 (self.selectDept,self.selectDocLv)
         cursor.execute(sql)
         doctorResult = cursor.fetchall()
+        """
     #-------------------------------------------
     #
     #            选择科室
@@ -163,9 +167,17 @@ class selectDocWin(QtWidgets.QWidget):
         self.widget.show()
     
     
-    def listClicked(self):
-        self.selectedDoc = self.listWidget.selectedItems()
+    def on_click_startChatting(self):
+        #--------------New Paying Window------------------
+        self.money = self.selectedDoc
+        self.widget = payingWin(self.money)
+        self.widget.show()
+        
     
+    
+    def listClicked(self):
+        self.selectedDoc = self.listWidget.selectedItems()[0].text()
+        self.setWindowTitle(self.selectedDoc)
     
     def initUI(self):
         self.setObjectName("Form")
@@ -239,11 +251,23 @@ class selectDocWin(QtWidgets.QWidget):
         self.listWidget.setGeometry(QtCore.QRect(30, 240, 1031, 401))
         self.listWidget.setObjectName("listWidget")
         self.listWidget.itemClicked.connect(self.listClicked)
+                               #-------------Debug---------------#
+        self.listWidget.addItems(["单晓辉","曹启明","郭鸣轩"])
+        
+        
+        
         #--------------------------Read Essay Button-----------------------------
-        self.readEssay = QtWidgets.QPushButton(self.groupBox)
-        self.readEssay.setGeometry(QtCore.QRect(920, 150, 93, 28))
+        self.readEssay = QtWidgets.QPushButton(self)
+        self.readEssay.setGeometry(QtCore.QRect(920, 200, 93, 28))
         self.readEssay.setObjectName("pushButton_11")
         self.readEssay.clicked.connect(self.on_click_readEssay)
+        
+        #--------------------------Start chatting--------------------------------
+        self.startChatting = QtWidgets.QPushButton(self)
+        self.startChatting.setGeometry(QtCore.QRect(920, 200, 93, 28))
+        self.startChatting.setObjectName("pushButton_11")
+        self.startChatting.clicked.connect(self.on_click_startChatting)
+        
         
         self.label_result = QtWidgets.QLabel(self)
         self.label_result.setGeometry(QtCore.QRect(480, 170, 131, 51))
@@ -274,6 +298,9 @@ class selectDocWin(QtWidgets.QWidget):
         self.pushButton_fuChanKe.setText(_translate("Form", "妇产科"))
         self.label_result.setText(_translate("Form", "查询结果"))
         self.readEssay.setText(_translate("Form","阅读文章 "))
+        self.startChatting.setText(_translate("Form","付费咨询 "))
+        
+        
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     win = selectDocWin()

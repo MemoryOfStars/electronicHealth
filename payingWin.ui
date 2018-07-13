@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1055</width>
+    <height>624</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>20</y>
+     <width>491</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>华文行楷</family>
+     <pointsize>24</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>          选择支付手段</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>100</y>
+     <width>1021</width>
+     <height>371</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>支付途径</string>
+   </property>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>20</y>
+      <width>951</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>方正舒体</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>银联</string>
+    </property>
+    <widget class="QRadioButton" name="radioButton">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>281</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>银行卡支付</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_4">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>130</y>
+      <width>951</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>PayPal</string>
+    </property>
+    <widget class="QRadioButton" name="radioButton_2">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>281</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PayPal支付</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>240</y>
+      <width>951</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bitstream Vera Sans Mono</family>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>AliPay</string>
+    </property>
+    <widget class="QRadioButton" name="radioButton_3">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>281</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>方正兰亭超细黑简体</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>支付宝</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>570</y>
+     <width>331</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>支付时请保护个人信息</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>500</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>LOGO   HERE</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>662</x>
+     <y>480</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>支付完成</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>870</x>
+     <y>480</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消支付</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>490</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>方正姚体</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>总金额：</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

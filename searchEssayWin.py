@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
+import mysql.connector as mc
 
 
 
@@ -18,8 +19,26 @@ class searchEssayWin(QtWidgets.QWidget):
         super().__init__()
         
         self.doctor = doctor
+        self.tags = "*"                                #要查找的关键字（从编辑框获取）
         
         self.initUI()
+        self.setWindowTitle(doctor)
+    
+    
+    def on_click_search():
+    #-----------------refresh   ListWidget------------------------
+    
+    
+    
+    
+    
+    def on_click_grading():
+    #----------------new grading Window---------------------------
+    
+    
+    
+    
+    
     
     def initUI(self):
         self.setObjectName("Form")
@@ -27,24 +46,34 @@ class searchEssayWin(QtWidgets.QWidget):
         self.groupBox = QtWidgets.QGroupBox(self)
         self.groupBox.setGeometry(QtCore.QRect(20, 20, 431, 241))
         self.groupBox.setObjectName("groupBox")
+        
         self.label_3 = QtWidgets.QLabel(self.groupBox)
         self.label_3.setGeometry(QtCore.QRect(10, 30, 131, 201))
         self.label_3.setObjectName("label_3")
+        
         self.textBrowser = QtWidgets.QTextBrowser(self.groupBox)
         self.textBrowser.setGeometry(QtCore.QRect(160, 30, 256, 192))
         self.textBrowser.setObjectName("textBrowser")
-        self.pushButton = QtWidgets.QPushButton(self)
-        self.pushButton.setGeometry(QtCore.QRect(812, 157, 201, 41))
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self)
-        self.pushButton_2.setGeometry(QtCore.QRect(812, 227, 201, 41))
-        self.pushButton_2.setObjectName("pushButton_2")
+        
+        self.pushButton_search = QtWidgets.QPushButton(self)
+        self.pushButton_search.setGeometry(QtCore.QRect(812, 157, 201, 41))
+        self.pushButton_search.setObjectName("pushButton")
+        self.pushButton_search.clicked.connect(self.on_click_search)
+        
+        self.pushButton_grading = QtWidgets.QPushButton(self)
+        self.pushButton_grading.setGeometry(QtCore.QRect(812, 227, 201, 41))
+        self.pushButton_grading.setObjectName("pushButton_2")
+        self.pushButton_grading.clicked.connect(self.on_click_grading)
+        
         self.listView = QtWidgets.QListView(self)
         self.listView.setGeometry(QtCore.QRect(20, 320, 1011, 331))
         self.listView.setObjectName("listView")
+        
         self.lineEdit = QtWidgets.QLineEdit(self)
         self.lineEdit.setGeometry(QtCore.QRect(560, 100, 451, 31))
         self.lineEdit.setObjectName("lineEdit")
+        
+        
         self.label = QtWidgets.QLabel(self)
         self.label.setGeometry(QtCore.QRect(460, 100, 91, 31))
         font = QtGui.QFont()
@@ -52,9 +81,11 @@ class searchEssayWin(QtWidgets.QWidget):
         font.setPointSize(19)
         self.label.setFont(font)
         self.label.setObjectName("label")
+        
         self.label_2 = QtWidgets.QLabel(self)
         self.label_2.setGeometry(QtCore.QRect(460, 150, 311, 111))
         self.label_2.setObjectName("label_2")
+        
         self.label_4 = QtWidgets.QLabel(self)
         self.label_4.setGeometry(QtCore.QRect(20, 280, 271, 31))
         font = QtGui.QFont()
@@ -62,6 +93,7 @@ class searchEssayWin(QtWidgets.QWidget):
         font.setPointSize(19)
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
+
 
         self.retranslateUi()
         QtCore.QMetaObject.connectSlotsByName(self)
@@ -76,8 +108,8 @@ class searchEssayWin(QtWidgets.QWidget):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Personal     Resume</p></body></html>"))
-        self.pushButton.setText(_translate("Form", "搜索"))
-        self.pushButton_2.setText(_translate("Form", "结束观看并评分"))
+        self.pushButton_search.setText(_translate("Form", "搜索"))
+        self.pushButton_grading.setText(_translate("Form", "结束观看并评分"))
         self.label.setText(_translate("Form", "搜索："))
         self.label_2.setText(_translate("Form", "LOGO         HERE"))
         self.label_4.setText(_translate("Form", "搜索结果："))

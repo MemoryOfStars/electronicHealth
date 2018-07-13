@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QMovie
 import socket as sk
 import sys
 
@@ -47,6 +48,11 @@ class chattingWin(QtWidgets.QWidget):
         self.label_docPic = QtWidgets.QLabel(self.groupBox)
         self.label_docPic.setGeometry(QtCore.QRect(10, 40, 101, 171))
         self.label_docPic.setObjectName("label")
+        self.gif = QtGui.QMovie('canvas.png')
+        self.label_docPic.setMovie(self.gif)
+        self.gif.start()
+        
+
         
         self.label_docResume = QtWidgets.QLabel(self.groupBox)
         self.label_docResume.setGeometry(QtCore.QRect(20, 260, 81, 191))
@@ -70,7 +76,8 @@ class chattingWin(QtWidgets.QWidget):
         self.pushButton_sendPic.setText(_translate("Chatting", "发送图片"))
         self.pushButton_send.setText(_translate("Chatting", "发送"))
         self.groupBox.setTitle(_translate("Chatting", "医生信息"))
-        self.label_docPic.setText(_translate("Chatting", "pictures here"))
+        #self.label_docPic.setText(_translate("Chatting", "pictures here"))
+        #self.label_docPic.setPixmap(_translate("Chatting",self.png))
         self.label_docResume.setText(_translate("Chatting", "Resumes Here"))
         self.pushButton_endChat.setText(_translate("Chatting", "结束咨询"))
 

@@ -177,7 +177,8 @@ class Example(QWidget):
         self.neex = newWidget()
         
     def listClicked(self):
-        self.setWindowTitle(self.listWidget.selectedItems())
+        self.setWindowTitle(str(self.listWidget.selectedItems()[0].text()))
+        print(self.listWidget.selectedItems()[0].text())
         
     def initUI(self):
         
@@ -198,6 +199,7 @@ class Example(QWidget):
         self.listWidget.setObjectName("listWidget")
         self.listWidget.addItems(['item1','item2'])
         self.listWidget.itemClicked.connect(self.listClicked)
+        
         self.show()
     def on_click(self,butn):
         butn.setStyleSheet("background-color:blue")
