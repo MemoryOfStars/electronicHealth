@@ -8,17 +8,98 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QMovie
-import socket as sk
+import mysql.connector as mc
+
+import threading
+
+import time
+import socket
 import sys
+
+
+
+
+
+
+
 
 class chattingWin(QtWidgets.QWidget):
     def __init__(self,doctorID):
         super().__init__()
         self.doctorID = doctorID
+        #---------------------患者端---------------------#
+        """
+        sql = 'SELECT ip FROM DOCTOR\
+                WHERE 医生ID = doctorID'
+        db = mc.connect(host="localhost", user="root", password="zaq1XSW2cde3", database="electronicHealth")
+        cursor = db.cursor()
+        
+        cursor.execute(sql)
+        
+        self.ip_port = cursor.fetchall()[0][0]
+        
+        self.sk = socket.socket()
+        
+        self.sk.connect(ip_port)
+        """
+        
+        #--------------------医生端---------------------#
+        self.ip_port = ('10.6.94.3',9999)
+
+        self.sk = socket.socket()
+        self.sk.bind(self.ip_port)
+        self.sk.listen(10)
+        
+        #-----------------医生端/患者端--都要新建线程来接受socket的消息------------------#
+        
+        t= threading.Thread(target=self.waiting_msg,args=(111,112))#创建线程
+        t.setDaemon(True)#设置为后台线程，这里默认是False，设置为True之后则主线程不用等待子线程
+        t.start()#开启线程
+        
+        
+        
         
         self.initUI()
         
-   
+    
+    def waiting_msg(self):
+        
+        #-------------------医生端----------------------------#
+        """
+        while True:
+            print ('server waiting...')
+            self.conn,self.addr = self.sk.accept()
+
+            while True:
+                data = conn.recv(1024)
+                #----------------在大的TextEdit里面显示----------------#
+                print(str(data,encoding='utf-8'))
+        
+            conn.close()
+        """
+        #------------------患者端-----------------------------#
+        
+        while True:
+            reply_msg = self.sk.recv(1024)
+            #-------------------在打的TextEdit里面显示-----------------#
+            print(str(reply_msg,encoding='utf-8'))
+    
+    #--------按 发送 Button 之后，读取输入框的内容并发送给另一端，同时显示在打的TextEdit中--------#
+    def on_click_sendMess(self):
+        send_mes = self.textEdit_input.text()
+        #------------------患者端-----------------------------#
+        self.sk.sendall(bytes(send_mes,encoding='utf8'))
+        #------------------医生端-----------------------------#
+        """
+        self.conn.sendall(bytes(send_mes,encoding='utf8'))
+        """
+    
+    
+    
+    
+    
+    
+    
     def initUI(self):
         self.setObjectName("Chatting")
         self.resize(794, 575)

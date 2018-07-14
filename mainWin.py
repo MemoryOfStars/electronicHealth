@@ -117,6 +117,10 @@ class mainWin(QtWidgets.QWidget):
         
         
         self.widget_payingWin = QtWidgets.QWidget(self)
+        self.widget_payingWin_pic = QtWidgets.QLabel(self.widget_payingWin)
+        self.widget_payingWin_pic.setGeometry(QtCore.QRect(0,0,1101,701))
+        self.temp_pic = QtGui.QPixmap("web.png")
+        self.widget_payingWin_pic.setPixmap(self.temp_pic)
         self.widget_payingWin.setGeometry(QtCore.QRect(10, 10, 1101, 701))
         self.widget_payingWin.setObjectName("widget_payingWin")
         self.widget_payingWin.hide()
