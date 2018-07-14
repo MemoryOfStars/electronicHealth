@@ -8,25 +8,46 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from chattingWin import chattingWin
-from searchEssayWin import searchEssayWin
 import sys
 
 class payingWin(QtWidgets.QWidget):
     
-    def __init__(self,money):
+    def __init__(self,Dialog,money):
         super().__init__()
         
         self.money = money
         self.widget = QtWidgets.QWidget()
+        self.payingMethod = "AliPay"
         
-        self.initUI()
+        self.initUI(Dialog)
     
     
     
-    def initUI(self):
+    
+    
+    
+    
+    def on_click_radioBtn(self,selectedBtn):
+        
+        self.radioButton_aliPay.setChecked(False)
+        self.radioButton_bankCard.setChecked(False)
+        self.radioButton_payPal.setChecked(False)
+        
+        if selectedBtn == self.radioButton_aliPay:
+            self.radioButton_aliPay.setChecked(True)
+            self.payingMethod = "AliPay"
+        elif selectedBtn == self.radioButton_bankCard:
+            self.radioButton_bankCard.setChecked(True)
+            self.payingMethod = "BankCard"
+        elif selectedBtn == self.radioButton_payPal:
+            self.radioButton_payPal.setChecked(True)
+            self.payingMethod = "PayPal"
+    
+    
+    def initUI(self,Dialog):
         self.setObjectName("Form")
-        self.resize(1055, 624)
-        self.label = QtWidgets.QLabel(self)
+        #self.resize(1055, 624)
+        self.label = QtWidgets.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(300, 20, 491, 91))
         font = QtGui.QFont()
         font.setFamily("华文行楷")
@@ -35,7 +56,7 @@ class payingWin(QtWidgets.QWidget):
         self.label.setFont(font)
         self.label.setObjectName("label")
         
-        self.groupBox = QtWidgets.QGroupBox(self)
+        self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setGeometry(QtCore.QRect(20, 100, 1021, 371))
         self.groupBox.setObjectName("groupBox")
         
@@ -51,6 +72,7 @@ class payingWin(QtWidgets.QWidget):
         self.radioButton_bankCard = QtWidgets.QRadioButton(self.groupBox_2)
         self.radioButton_bankCard.setGeometry(QtCore.QRect(30, 40, 281, 31))
         self.radioButton_bankCard.setObjectName("radioButton")
+        self.radioButton_bankCard.clicked.connect(lambda:self.on_click_radioBtn(self.radioButton_bankCard))
         
         
         self.groupBox_4 = QtWidgets.QGroupBox(self.groupBox)
@@ -64,6 +86,7 @@ class payingWin(QtWidgets.QWidget):
         self.radioButton_payPal = QtWidgets.QRadioButton(self.groupBox_4)
         self.radioButton_payPal.setGeometry(QtCore.QRect(30, 50, 281, 31))
         self.radioButton_payPal.setObjectName("radioButton_2")
+        self.radioButton_payPal.clicked.connect(lambda:self.on_click_radioBtn(self.radioButton_payPal))
         
         
         self.groupBox_3 = QtWidgets.QGroupBox(self.groupBox)
@@ -80,25 +103,26 @@ class payingWin(QtWidgets.QWidget):
         font.setFamily("方正兰亭超细黑简体")
         self.radioButton_aliPay.setFont(font)
         self.radioButton_aliPay.setObjectName("radioButton_3")
+        self.radioButton_aliPay.clicked.connect(lambda:self.on_click_radioBtn(self.radioButton_aliPay))
         
         
-        self.label_2 = QtWidgets.QLabel(self)
+        self.label_2 = QtWidgets.QLabel(Dialog)
         self.label_2.setGeometry(QtCore.QRect(400, 570, 331, 31))
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self)
         self.label_3.setGeometry(QtCore.QRect(430, 500, 121, 61))
         self.label_3.setObjectName("label_3")
         
-        self.pushButton_payCompleted = QtWidgets.QPushButton(self)
+        self.pushButton_payCompleted = QtWidgets.QPushButton(Dialog)
         self.pushButton_payCompleted.setGeometry(QtCore.QRect(662, 480, 121, 51))
         self.pushButton_payCompleted.setObjectName("pushButton")
         
-        self.pushButton_payCanceled = QtWidgets.QPushButton(self)
+        self.pushButton_payCanceled = QtWidgets.QPushButton(Dialog)
         self.pushButton_payCanceled.setGeometry(QtCore.QRect(870, 480, 121, 51))
         self.pushButton_payCanceled.setObjectName("pushButton_2")
         
         
-        self.label_4 = QtWidgets.QLabel(self)
+        self.label_4 = QtWidgets.QLabel(Dialog)
         self.label_4.setGeometry(QtCore.QRect(20, 490, 300, 61))
         font = QtGui.QFont()
         font.setFamily("方正姚体")
@@ -106,12 +130,12 @@ class payingWin(QtWidgets.QWidget):
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
 
-        self.retranslateUi()
+        self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(self)
 
-    def retranslateUi(self):
+    def retranslateUi(self,Dialog):
         _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("Form", "支付窗口"))
+        Dialog.setWindowTitle(_translate("Form", "支付窗口"))
         self.label.setText(_translate("Form", "          选择支付手段"))
         self.groupBox.setTitle(_translate("Form", "支付途径"))
         self.groupBox_2.setTitle(_translate("Form", "银联"))

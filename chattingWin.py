@@ -12,8 +12,9 @@ import socket as sk
 import sys
 
 class chattingWin(QtWidgets.QWidget):
-    def __init__(self):
+    def __init__(self,doctorID):
         super().__init__()
+        self.doctorID = doctorID
         
         self.initUI()
         
@@ -67,7 +68,7 @@ class chattingWin(QtWidgets.QWidget):
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("Chatting", "Chatting"))
+        self.setWindowTitle(_translate("Chatting", self.doctorID))
         self.textEdit_input.setHtml(_translate("Chatting", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

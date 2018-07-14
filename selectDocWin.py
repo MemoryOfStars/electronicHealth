@@ -14,11 +14,13 @@ import sys
 
 class selectDocWin(QtWidgets.QWidget):
     
-    def __init__(self):
+    def __init__(self,Dialog):
         super().__init__()
         
-        self.initUI()
+        self.initUI(Dialog)
         self.widget = QtWidgets.QWidget()
+        self.dialog = Dialog
+        self.selectedDoc = "郭鸣轩"
         self.money = 0
         
         self.selectDept = "*"                 #select dept
@@ -160,33 +162,19 @@ class selectDocWin(QtWidgets.QWidget):
             
             self.pushButton_guKe.setStyleSheet("background-color:blue;color:white")
         
-    def on_click_readEssay(self):
-        #--------------New a Window-----------------------
-        #--------------select all essays which are written by --selectedDoc--  -------------
-        self.widget = searchEssayWin(self.selectedDoc)
-        self.widget.show()
-    
-    
-    def on_click_startChatting(self):
-        #--------------New Paying Window------------------
-        self.money = self.selectedDoc
-        self.widget = payingWin(self.money)
-        self.widget.show()
-        
-    
-    
+          
     def listClicked(self):
         self.selectedDoc = self.listWidget.selectedItems()[0].text()
         self.setWindowTitle(self.selectedDoc)
     
-    def initUI(self):
+    def initUI(self,Dialog):
         self.setObjectName("Form")
         self.resize(1100, 684)
         font = QtGui.QFont()
         font.setFamily("Adobe Garamond Pro Bold")
         self.setFont(font)
         
-        self.groupBox = QtWidgets.QGroupBox(self)
+        self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setGeometry(QtCore.QRect(30, 20, 1031, 131))
         self.groupBox.setObjectName("groupBox")
         
@@ -247,7 +235,7 @@ class selectDocWin(QtWidgets.QWidget):
         self.pushButton_fuChanKe.setObjectName("pushButton_11")
         self.pushButton_fuChanKe.clicked.connect(lambda:self.on_click_selectDept(self.pushButton_fuChanKe))
         #--------------------------Searching Results-----------------------------
-        self.listWidget = QtWidgets.QListWidget(self)
+        self.listWidget = QtWidgets.QListWidget(Dialog)
         self.listWidget.setGeometry(QtCore.QRect(30, 240, 1031, 401))
         self.listWidget.setObjectName("listWidget")
         self.listWidget.itemClicked.connect(self.listClicked)
@@ -257,19 +245,17 @@ class selectDocWin(QtWidgets.QWidget):
         
         
         #--------------------------Read Essay Button-----------------------------
-        self.readEssay = QtWidgets.QPushButton(self)
-        self.readEssay.setGeometry(QtCore.QRect(920, 200, 93, 28))
+        self.readEssay = QtWidgets.QPushButton(Dialog)
+        self.readEssay.setGeometry(QtCore.QRect(920, 150, 93, 28))
         self.readEssay.setObjectName("pushButton_11")
-        self.readEssay.clicked.connect(self.on_click_readEssay)
         
         #--------------------------Start chatting--------------------------------
-        self.startChatting = QtWidgets.QPushButton(self)
+        self.startChatting = QtWidgets.QPushButton(Dialog)
         self.startChatting.setGeometry(QtCore.QRect(920, 200, 93, 28))
         self.startChatting.setObjectName("pushButton_11")
-        self.startChatting.clicked.connect(self.on_click_startChatting)
         
         
-        self.label_result = QtWidgets.QLabel(self)
+        self.label_result = QtWidgets.QLabel(Dialog)
         self.label_result.setGeometry(QtCore.QRect(480, 170, 131, 51))
         font = QtGui.QFont()
         font.setFamily("幼圆")
@@ -277,12 +263,12 @@ class selectDocWin(QtWidgets.QWidget):
         self.label_result.setFont(font)
         self.label_result.setObjectName("label_3")
 
-        self.retranslateUi()
-        QtCore.QMetaObject.connectSlotsByName(self)
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
 
-    def retranslateUi(self):
+    def retranslateUi(self,Dialog):
         _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("Form", "Form"))
+        Dialog.setWindowTitle(_translate("Form", "Form"))
         self.groupBox.setTitle(_translate("Form", "筛选条件"))
         self.label_dept.setText(_translate("Form", "科室："))
         self.label_docLv.setText(_translate("Form", "医生职称："))
