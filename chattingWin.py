@@ -8,11 +8,12 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QMovie
+import time
 import mysql.connector as mc
 
 import threading
 
-import time
+import datetime
 import socket
 import sys
 
@@ -52,7 +53,7 @@ class chattingWin(QtWidgets.QWidget):
         
         #-----------------医生端/患者端--都要新建线程来接受socket的消息------------------#
         
-        t= threading.Thread(target=self.waiting_msg,args=(111,112))#创建线程
+        t= threading.Thread(target=self.waiting_msg)#创建线程
         t.setDaemon(True)#设置为后台线程，这里默认是False，设置为True之后则主线程不用等待子线程
         t.start()#开启线程
         
@@ -86,16 +87,31 @@ class chattingWin(QtWidgets.QWidget):
     
     #--------按 发送 Button 之后，读取输入框的内容并发送给另一端，同时显示在打的TextEdit中--------#
     def on_click_sendMess(self):
-        send_mes = self.textEdit_input.text()
+        send_mes = self.textEdit_input.document().toPlainText()
         #------------------患者端-----------------------------#
-        self.sk.sendall(bytes(send_mes,encoding='utf8'))
+        """
+        cursor = self.textEdit_chat.textCursor()
+        cursor.movePosition(QtGui.QTextCursor.End)
+        Html = "<b>用户%s</b>   <font color='blue'>%s</font><br><br><h6>%s<\h6><br><br>" %(self.ip_port,datetime.datetime.now(),send_mes)
+        
+        cursor.insertHtml(Html)
+        self.textEdit_input.setText('')
+        self.textEdit_input.setFocus(True)
+        Html_to = "<b>xxx医生</b>   <font color='blue'>%s</font><br><br><h6>%s<\h6><br><br>" %(datetime.datetime.now(),send_mes)
+        """
+        #self.sk.sendall(bytes(send_mes,encoding='utf8'))
         #------------------医生端-----------------------------#
+        
+        cursor = self.textEdit_chat.textCursor()
+        cursor.movePosition(QtGui.QTextCursor.End)
+        Html = "<b>xxx医生</b>   <font color='blue'>%s</font><br><br><h6>%s<\h6><br><br>" %(datetime.datetime.now(),send_mes)
+        
+        cursor.insertHtml(Html)
+        self.textEdit_input.setText('')
+        self.textEdit_input.setFocus(True)
         """
-        self.conn.sendall(bytes(send_mes,encoding='utf8'))
+        self.conn.sendall(bytes(Html_to,encoding='utf8'))
         """
-    
-    
-    
     
     
     
@@ -108,12 +124,14 @@ class chattingWin(QtWidgets.QWidget):
         
         self.textEdit_chat = QtWidgets.QTextEdit(self)
         self.textEdit_chat.setGeometry(QtCore.QRect(150, 10, 631, 411))
+        self.textEdit_chat.setFocus(False)
         self.textEdit_chat.setObjectName("textEdit_chat")
         
         
         self.textEdit_input = QtWidgets.QTextEdit(self)
         self.textEdit_input.setGeometry(QtCore.QRect(150, 470, 631, 101))
         self.textEdit_input.setObjectName("textEdit_2")
+        self.textEdit_input.setFocus(True)
         
         self.pushButton_sendPic = QtWidgets.QPushButton(self)
         self.pushButton_sendPic.setGeometry(QtCore.QRect(150, 430, 93, 28))
@@ -122,6 +140,7 @@ class chattingWin(QtWidgets.QWidget):
         self.pushButton_send = QtWidgets.QPushButton(self)
         self.pushButton_send.setGeometry(QtCore.QRect(260, 430, 93, 28))
         self.pushButton_send.setObjectName("pushButton_2")
+        self.pushButton_send.clicked.connect(self.on_click_sendMess)
         
         self.groupBox = QtWidgets.QGroupBox(self)
         self.groupBox.setGeometry(QtCore.QRect(10, 20, 131, 531))
@@ -130,9 +149,8 @@ class chattingWin(QtWidgets.QWidget):
         self.label_docPic = QtWidgets.QLabel(self.groupBox)
         self.label_docPic.setGeometry(QtCore.QRect(10, 40, 101, 171))
         self.label_docPic.setObjectName("label")
-        self.gif = QtGui.QMovie('canvas.png')
-        self.label_docPic.setMovie(self.gif)
-        self.gif.start()
+        self.pic = QtGui.QPixmap('55012886_p0_master1200.jpg')
+        self.label_docPic.setPixmap(self.pic)
         
 
         
