@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QMovie
+from gradingWin import gradingWin
 import time
 import mysql.connector as mc
 
@@ -28,6 +29,7 @@ class chattingWin(QtWidgets.QWidget):
     def __init__(self,doctorID):
         super().__init__()
         self.doctorID = doctorID
+        self.widget = QtWidgets.QWidget()
         #---------------------患者端---------------------#
         """
         sql = 'SELECT ip FROM DOCTOR\
@@ -62,6 +64,15 @@ class chattingWin(QtWidgets.QWidget):
         
         self.initUI()
         
+    def endChat(self):
+        
+        self.widget = gradingWin(self.doctorID)
+        
+        self.widget.show()
+        
+        self.close()
+    
+    
     
     def waiting_msg(self):
         
@@ -161,6 +172,7 @@ class chattingWin(QtWidgets.QWidget):
         self.pushButton_endChat = QtWidgets.QPushButton(self.groupBox)
         self.pushButton_endChat.setGeometry(QtCore.QRect(20, 490, 93, 28))
         self.pushButton_endChat.setObjectName("pushButton_3")
+        self.pushButton_endChat.clicked.connect(self.endChat)
 
         self.retranslateUi()
         QtCore.QMetaObject.connectSlotsByName(self)
