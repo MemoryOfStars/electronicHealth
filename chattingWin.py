@@ -53,13 +53,13 @@ class chattingWin(QtWidgets.QWidget):
         self.sk = socket.socket()
         self.sk.bind(self.ip_port)
         self.sk.listen(10)
-        
+        """
         #-----------------医生端/患者端--都要新建线程来接受socket的消息------------------#
         
         t= threading.Thread(target=self.waiting_msg)#创建线程
         t.setDaemon(True)#设置为后台线程，这里默认是False，设置为True之后则主线程不用等待子线程
         t.start()#开启线程
-        """
+        
         
         
         
@@ -94,26 +94,30 @@ class chattingWin(QtWidgets.QWidget):
         
         while True:
             reply_msg = self.sk.recv(1024)
-            #-------------------在打的TextEdit里面显示-----------------#
-            print(str(reply_msg,encoding='utf-8'))
+            #-------------------在大的TextEdit里面显示-----------------#
+            cursor = self.textEdit_chat.textCursor()
+            cursor.movePosition(QtGui.QTextCursor.End)
+        
+            cursor.insertHtml(str(reply_msg,encoding='utf-8'))
+            self.textEdit_chat.verticalScrollBar().setValue(self.textEdit_chat.verticalScrollBar().maximumHeight())
     
     #--------按 发送 Button 之后，读取输入框的内容并发送给另一端，同时显示在打的TextEdit中--------#
     def on_click_sendMess(self):
         send_mes = self.textEdit_input.document().toPlainText()
         #------------------患者端-----------------------------#
-        """
+        
         cursor = self.textEdit_chat.textCursor()
         cursor.movePosition(QtGui.QTextCursor.End)
         Html = "<b>用户%s</b>   <font color='blue'>%s</font><br><br><h6>%s<\h6><br><br>" %(self.ip_port,datetime.datetime.now(),send_mes)
         
         cursor.insertHtml(Html)
+        self.textEdit_chat.verticalScrollBar().setValue(self.textEdit_chat.verticalScrollBar().maximumHeight())
         self.textEdit_input.setText('')
         self.textEdit_input.setFocus(True)
-        Html_to = "<b>xxx医生</b>   <font color='blue'>%s</font><br><br><h6>%s<\h6><br><br>" %(datetime.datetime.now(),send_mes)
-        """
-        #self.sk.sendall(bytes(send_mes,encoding='utf8'))
-        #------------------医生端-----------------------------#
         
+        self.sk.sendall(bytes(Html,encoding='utf8'))
+        #------------------医生端-----------------------------#
+        """
         cursor = self.textEdit_chat.textCursor()
         cursor.movePosition(QtGui.QTextCursor.End)
         Html = "<b>xxx医生</b>   <font color='blue'>%s</font><br><br><h6>%s<\h6><br><br>" %(datetime.datetime.now(),send_mes)
@@ -121,7 +125,7 @@ class chattingWin(QtWidgets.QWidget):
         cursor.insertHtml(Html)
         self.textEdit_input.setText('')
         self.textEdit_input.setFocus(True)
-        """
+        
         self.conn.sendall(bytes(Html_to,encoding='utf8'))
         """
     
