@@ -21,6 +21,7 @@ class searchEssayWin(QtWidgets.QWidget):
         self.doctor = doctor
         self.tags = "*"                                #要查找的关键字（从编辑框获取）
         self.widget = QtWidgets.QWidget()
+        self.selectedEssayID = ""
         
         self.initUI(Dialog)
     
@@ -32,7 +33,8 @@ class searchEssayWin(QtWidgets.QWidget):
         #-------------search in DataBase---------------------
         
     
-    
+    def on_click_listWidget(self):
+        s
     
     
     
@@ -66,12 +68,13 @@ class searchEssayWin(QtWidgets.QWidget):
         #self.pushButton_grading.clicked.connect(self.on_click_grading)
         
         self.pushButton_back = QtWidgets.QPushButton(Dialog)
-        self.pushButton_back.setGeometry(QtCore.QRect(650, 227, 201, 41))
+        self.pushButton_back.setGeometry(QtCore.QRect(600, 227, 201, 41))
         self.pushButton_back.setObjectName("pushButton_3")
         
         self.listWidget = QtWidgets.QListWidget(Dialog)
         self.listWidget.setGeometry(QtCore.QRect(20, 320, 1011, 331))
         self.listWidget.setObjectName("listView")
+        self.listWidget.addItems(['头疼的危害','艾滋病防治策略','激光笔照蔡徐坤眼睛的人微博找到了','白给奇侠Nifty'])
         
         self.lineEdit = QtWidgets.QLineEdit(Dialog)
         self.lineEdit.setGeometry(QtCore.QRect(560, 100, 451, 31))
@@ -87,9 +90,6 @@ class searchEssayWin(QtWidgets.QWidget):
         self.label.setFont(font)
         self.label.setObjectName("label")
         
-        self.label_2 = QtWidgets.QLabel(Dialog)
-        self.label_2.setGeometry(QtCore.QRect(460, 150, 311, 111))
-        self.label_2.setObjectName("label_2")
         
         self.label_4 = QtWidgets.QLabel(Dialog)
         self.label_4.setGeometry(QtCore.QRect(20, 280, 271, 31))
@@ -117,7 +117,6 @@ class searchEssayWin(QtWidgets.QWidget):
         self.pushButton_grading.setText(_translate("Form", "结束观看并评分"))
         self.pushButton_back.setText(_translate("Form", "返回上个界面"))
         self.label.setText(_translate("Form", "搜索："))
-        self.label_2.setText(_translate("Form", "LOGO         HERE"))
         self.label_4.setText(_translate("Form", "搜索结果："))
 
     

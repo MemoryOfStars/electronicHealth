@@ -19,9 +19,8 @@ class seeMoreEssays(QtWidgets.QWidget):
     
     
     def initUI(self, Dialog):
-        Form.setObjectName("Form")
-        Form.resize(1022, 710)
-        self.groupBox = QtWidgets.QGroupBox(Form)
+        self.setObjectName("Form")
+        self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setGeometry(QtCore.QRect(20, 20, 431, 171))
         self.groupBox.setObjectName("groupBox")
         self.label = QtWidgets.QLabel(self.groupBox)
@@ -30,23 +29,23 @@ class seeMoreEssays(QtWidgets.QWidget):
         self.textBrowser = QtWidgets.QTextBrowser(self.groupBox)
         self.textBrowser.setGeometry(QtCore.QRect(140, 10, 256, 151))
         self.textBrowser.setObjectName("textBrowser")
-        self.label_2 = QtWidgets.QLabel(Form)
+        self.label_2 = QtWidgets.QLabel(Dialog)
         self.label_2.setGeometry(QtCore.QRect(490, 90, 481, 91))
         font = QtGui.QFont()
         font.setFamily("华文行楷")
         font.setPointSize(31)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
-        self.textBrowser_2 = QtWidgets.QTextBrowser(Form)
+        self.textBrowser_2 = QtWidgets.QTextBrowser(Dialog)
         self.textBrowser_2.setGeometry(QtCore.QRect(20, 200, 981, 501))
         self.textBrowser_2.setObjectName("textBrowser_2")
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(self)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Dialog.setWindowTitle(_translate("Form", "Form"))
         self.groupBox.setTitle(_translate("Form", "GroupBox"))
         self.label.setText(_translate("Form", "Pictures "))
         self.label_2.setText(_translate("Form", "Title"))

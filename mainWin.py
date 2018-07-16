@@ -11,6 +11,7 @@ from selectDocWin import selectDocWin
 from payingWin import payingWin
 from chattingWin import chattingWin
 from searchEssayWin import searchEssayWin
+from seeMoreEssays import seeMoreEssays
 from gradingWin import gradingWin
 import sys
 
@@ -28,9 +29,10 @@ class mainWin(QtWidgets.QWidget):
     #                                                               #
     #---------------------------------------------------------------#
     def on_click_seeMoreEssays(self):
-        self.selectedEssayID = self.win_searchEssay.listWidget.selectedItems()[0].text()
-        self.widget = seeMoreEssay(selectedEssayID)                 #在当前页面显示想要查看的文章
-        self.widget.show()
+        self.widget_searchEssayWin.hide()
+        self.win_searchEssay.selectedEssayID = self.win_searchEssay.listWidget.selectedItems()[0].text()
+        self.win_seeMoreEssays = seeMoreEssays(self.win_searchEssay.selectedEssayID,self.widget_seeMoreEssays)                 #在当前页面显示想要查看的文章
+        self.widget_seeMoreEssays.show()
 
 
 
@@ -153,7 +155,10 @@ class mainWin(QtWidgets.QWidget):
         self.widget_payingWin.setObjectName("widget_payingWin")
         self.widget_payingWin.hide()
         
-        
+        self.widget_seeMoreEssays = QtWidgets.QWidget(self)
+        self.widget_seeMoreEssays.setGeometry(QtCore.QRect(10, 10, 1101, 701))
+        self.widget_seeMoreEssays.setObjectName("widget_seeMoreEssays")
+        self.widget_seeMoreEssays.hide()
         
 
         self.retranslateUi()
