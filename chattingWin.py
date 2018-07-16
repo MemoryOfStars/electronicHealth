@@ -38,15 +38,16 @@ class chattingWin(QtWidgets.QWidget):
         cursor = db.cursor()
         
         cursor.execute(sql)
-        
-        self.ip_port = cursor.fetchall()[0][0]
-        
+        """
+        #self.ip_port = cursor.fetchall()[0][0]
+        self.ip_port = ('127.0.0.1',9999)
         self.sk = socket.socket()
         
-        self.sk.connect(ip_port)
-        """
+        self.sk.connect(self.ip_port)
+        
         
         #--------------------医生端---------------------#
+        """
         self.ip_port = ('10.6.94.3',9999)
 
         self.sk = socket.socket()
@@ -58,7 +59,7 @@ class chattingWin(QtWidgets.QWidget):
         t= threading.Thread(target=self.waiting_msg)#创建线程
         t.setDaemon(True)#设置为后台线程，这里默认是False，设置为True之后则主线程不用等待子线程
         t.start()#开启线程
-        
+        """
         
         
         
@@ -160,7 +161,7 @@ class chattingWin(QtWidgets.QWidget):
         self.label_docPic = QtWidgets.QLabel(self.groupBox)
         self.label_docPic.setGeometry(QtCore.QRect(10, 40, 101, 171))
         self.label_docPic.setObjectName("label")
-        self.pic = QtGui.QPixmap('55012886_p0_master1200.jpg')
+        self.pic = QtGui.QPixmap('55012886_p0_master1200.jpg').scaled(self.label_docPic.rect().size())
         self.label_docPic.setPixmap(self.pic)
         
 

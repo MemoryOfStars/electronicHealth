@@ -166,6 +166,7 @@ class selectDocWin(QtWidgets.QWidget):
     def listClicked(self):
         self.selectedDoc = self.listWidget.selectedItems()[0].text()
         self.setWindowTitle(self.selectedDoc)
+        print(self.selectedDoc)
     
     def initUI(self,Dialog):
         self.setObjectName("Form")

@@ -17,62 +17,99 @@ class gradingWin(QtWidgets.QWidget):
         self.doctorID = doctorID #--------------------对对应的医生进行打分------------------#
         self.grade = 5
         
-        
         self.initUI()
     
     
     def pushButton1_turnBlue(self,QEvent):
-        self.pushButton_2.setStyleSheet("background-color:white;color:black")
-        self.pushButton_3.setStyleSheet("background-color:white;color:black")
-        self.pushButton_4.setStyleSheet("background-color:white;color:black")
-        self.pushButton_5.setStyleSheet("background-color:white;color:black")
-        self.pushButton_6.setStyleSheet("background-color:white;color:black")
+        self.pushButton_2.setIcon(self.icon_cancelStar)
+        self.pushButton_2.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_3.setIcon(self.icon_cancelStar)
+        self.pushButton_3.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_4.setIcon(self.icon_cancelStar)
+        self.pushButton_4.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_5.setIcon(self.icon_cancelStar)
+        self.pushButton_5.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_6.setIcon(self.icon_cancelStar)
+        self.pushButton_6.setIconSize(self.pushButton_2.rect().size())
         
-        self.pushButton_2.setStyleSheet("background-color:blue;color:white")
+        
+        self.pushButton_2.setIcon(self.icon)
+        self.pushButton_2.setIconSize(self.pushButton_2.rect().size())
         
         self.grade = 1
     def pushButton2_turnBlue(self,QEvent):
-        self.pushButton_2.setStyleSheet("background-color:white;color:black")
-        self.pushButton_3.setStyleSheet("background-color:white;color:black")
-        self.pushButton_4.setStyleSheet("background-color:white;color:black")
-        self.pushButton_5.setStyleSheet("background-color:white;color:black")
-        self.pushButton_6.setStyleSheet("background-color:white;color:black")
+        self.pushButton_2.setIcon(self.icon_cancelStar)
+        self.pushButton_2.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_3.setIcon(self.icon_cancelStar)
+        self.pushButton_3.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_4.setIcon(self.icon_cancelStar)
+        self.pushButton_4.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_5.setIcon(self.icon_cancelStar)
+        self.pushButton_5.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_6.setIcon(self.icon_cancelStar)
+        self.pushButton_6.setIconSize(self.pushButton_2.rect().size())
         
-        self.pushButton_2.setStyleSheet("background-color:blue;color:white")
-        self.pushButton_3.setStyleSheet("background-color:blue;color:white")
+        self.pushButton_2.setIcon(self.icon)
+        self.pushButton_3.setIcon(self.icon)
+        self.pushButton_2.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_3.setIconSize(self.pushButton_2.rect().size())
+        
         
         self.grade = 2
     def pushButton3_turnBlue(self,QEvent):
-        self.pushButton_2.setStyleSheet("background-color:white;color:black")
-        self.pushButton_3.setStyleSheet("background-color:white;color:black")
-        self.pushButton_4.setStyleSheet("background-color:white;color:black")
-        self.pushButton_5.setStyleSheet("background-color:white;color:black")
-        self.pushButton_6.setStyleSheet("background-color:white;color:black")
+        self.pushButton_2.setIcon(self.icon_cancelStar)
+        self.pushButton_2.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_3.setIcon(self.icon_cancelStar)
+        self.pushButton_3.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_4.setIcon(self.icon_cancelStar)
+        self.pushButton_4.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_5.setIcon(self.icon_cancelStar)
+        self.pushButton_5.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_6.setIcon(self.icon_cancelStar)
+        self.pushButton_6.setIconSize(self.pushButton_2.rect().size())
         
-        self.pushButton_2.setStyleSheet("background-color:blue;color:white")
-        self.pushButton_3.setStyleSheet("background-color:blue;color:white")
-        self.pushButton_4.setStyleSheet("background-color:blue;color:white")
+        self.pushButton_2.setIcon(self.icon)
+        self.pushButton_3.setIcon(self.icon)
+        self.pushButton_4.setIcon(self.icon)
+        self.pushButton_2.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_3.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_4.setIconSize(self.pushButton_2.rect().size())
         
         self.grade = 3
     def pushButton4_turnBlue(self,QEvent):
-        self.pushButton_2.setStyleSheet("background-color:white;color:black")
-        self.pushButton_3.setStyleSheet("background-color:white;color:black")
-        self.pushButton_4.setStyleSheet("background-color:white;color:black")
-        self.pushButton_5.setStyleSheet("background-color:white;color:black")
-        self.pushButton_6.setStyleSheet("background-color:white;color:black")
+        self.pushButton_2.setIcon(self.icon_cancelStar)
+        self.pushButton_2.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_3.setIcon(self.icon_cancelStar)
+        self.pushButton_3.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_4.setIcon(self.icon_cancelStar)
+        self.pushButton_4.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_5.setIcon(self.icon_cancelStar)
+        self.pushButton_5.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_6.setIcon(self.icon_cancelStar)
+        self.pushButton_6.setIconSize(self.pushButton_2.rect().size())
         
-        self.pushButton_2.setStyleSheet("background-color:blue;color:white")
-        self.pushButton_3.setStyleSheet("background-color:blue;color:white")
-        self.pushButton_4.setStyleSheet("background-color:blue;color:white")
-        self.pushButton_5.setStyleSheet("background-color:blue;color:white")
+        self.pushButton_2.setIcon(self.icon)
+        self.pushButton_3.setIcon(self.icon)
+        self.pushButton_4.setIcon(self.icon)
+        self.pushButton_5.setIcon(self.icon)
+        self.pushButton_2.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_3.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_4.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_5.setIconSize(self.pushButton_2.rect().size())
         
         self.grade = 4
     def pushButton5_turnBlue(self,QEvent):
-        self.pushButton_2.setStyleSheet("background-color:blue;color:white")
-        self.pushButton_3.setStyleSheet("background-color:blue;color:white")
-        self.pushButton_4.setStyleSheet("background-color:blue;color:white")
-        self.pushButton_5.setStyleSheet("background-color:blue;color:white")
-        self.pushButton_6.setStyleSheet("background-color:blue;color:white")
+        self.pushButton_2.setIcon(self.icon)
+        self.pushButton_3.setIcon(self.icon)
+        self.pushButton_4.setIcon(self.icon)
+        self.pushButton_5.setIcon(self.icon)
+        self.pushButton_6.setIcon(self.icon)
+        
+        self.pushButton_2.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_3.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_4.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_5.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_6.setIconSize(self.pushButton_2.rect().size())
         
         self.grade = 5
         
@@ -86,43 +123,17 @@ class gradingWin(QtWidgets.QWidget):
         
         self.close()
     
-    """    
-    def pushButton1_turnWhite(self,QEvent):
-        self.pushButton_2.setStyleSheet("background-color:white;color:white")
-        self.pushButton_3.setStyleSheet("background-color:white;color:white")
-        self.pushButton_4.setStyleSheet("background-color:white;color:white")
-        self.pushButton_5.setStyleSheet("background-color:white;color:white")
-        self.pushButton_6.setStyleSheet("background-color:white;color:white")
-    def pushButton2_turnWhite(self,QEvent):
-        self.pushButton_2.setStyleSheet("background-color:white;color:white")
-        self.pushButton_3.setStyleSheet("background-color:white;color:white")
-        self.pushButton_4.setStyleSheet("background-color:white;color:white")
-        self.pushButton_5.setStyleSheet("background-color:white;color:white")
-        self.pushButton_6.setStyleSheet("background-color:white;color:white")
-    def pushButton3_turnWhite(self,QEvent):
-        self.pushButton_2.setStyleSheet("background-color:white;color:white")
-        self.pushButton_3.setStyleSheet("background-color:white;color:white")
-        self.pushButton_4.setStyleSheet("background-color:white;color:white")
-        self.pushButton_5.setStyleSheet("background-color:white;color:white")
-        self.pushButton_6.setStyleSheet("background-color:white;color:white")
-    def pushButton4_turnWhite(self,QEvent):
-        self.pushButton_2.setStyleSheet("background-color:white;color:white")
-        self.pushButton_3.setStyleSheet("background-color:white;color:white")
-        self.pushButton_4.setStyleSheet("background-color:white;color:white")
-        self.pushButton_5.setStyleSheet("background-color:white;color:white")
-        self.pushButton_6.setStyleSheet("background-color:white;color:white")
-    def pushButton5_turnWhite(self,QEvent):
-        self.pushButton_2.setStyleSheet("background-color:white;color:white")
-        self.pushButton_3.setStyleSheet("background-color:white;color:white")
-        self.pushButton_4.setStyleSheet("background-color:white;color:white")
-        self.pushButton_5.setStyleSheet("background-color:white;color:white")
-        self.pushButton_6.setStyleSheet("background-color:white;color:white")
-    """    
         
         
     def initUI(self):
         self.setObjectName("Form")
         #Form.resize(400, 300)
+        self.label_completeGrading = QtWidgets.QLabel(self)
+        self.label_completeGrading.setGeometry(QtCore.QRect(50, 180, 93, 120))
+        self.completeGrading_pix = QtGui.QPixmap("completeGrading.png").scaled(self.label_completeGrading.rect().size())
+        self.label_completeGrading.setPixmap(self.completeGrading_pix)
+        
+        
         self.pushButton = QtWidgets.QPushButton(self)
         self.pushButton.setGeometry(QtCore.QRect(160, 240, 93, 28))
         self.pushButton.setObjectName("pushButton")
@@ -133,6 +144,12 @@ class gradingWin(QtWidgets.QWidget):
         self.pushButton_2.setGeometry(QtCore.QRect(10, 100, 61, 61))
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_2.enterEvent = self.pushButton1_turnBlue
+        self.pixmap_heart = QtGui.QPixmap("Heart.png").scaled(self.pushButton_2.rect().size())
+        self.cancel_stars = QtGui.QPixmap("cancelStars.jpg").scaled(self.pushButton_2.rect().size())
+        self.icon = QtGui.QIcon(self.pixmap_heart)
+        self.icon_cancelStar = QtGui.QIcon(self.cancel_stars)
+        
+        
         #self.pushButton_2.leaveEvent = self.pushButton1_turnWhite
         
         self.pushButton_3 = QtWidgets.QPushButton(self)
@@ -166,11 +183,21 @@ class gradingWin(QtWidgets.QWidget):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("Form", "评分界面"))
         self.pushButton.setText(_translate("Form", "完成评分"))
-        self.pushButton_2.setText(_translate("Form", "1"))
-        self.pushButton_3.setText(_translate("Form", "2"))
-        self.pushButton_4.setText(_translate("Form", "3"))
-        self.pushButton_5.setText(_translate("Form", "4"))
-        self.pushButton_6.setText(_translate("Form", "5"))
+        self.pushButton_2.setIcon(self.icon_cancelStar)
+        self.pushButton_2.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_3.setIcon(self.icon_cancelStar)
+        self.pushButton_3.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_4.setIcon(self.icon_cancelStar)
+        self.pushButton_4.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_5.setIcon(self.icon_cancelStar)
+        self.pushButton_5.setIconSize(self.pushButton_2.rect().size())
+        self.pushButton_6.setIcon(self.icon_cancelStar)
+        self.pushButton_6.setIconSize(self.pushButton_2.rect().size())
+#        self.pushButton_2.setText(_translate("Form", "1"))
+#        self.pushButton_3.setText(_translate("Form", "2"))
+#        self.pushButton_4.setText(_translate("Form", "3"))
+#        self.pushButton_5.setText(_translate("Form", "4"))
+#        self.pushButton_6.setText(_translate("Form", "5"))
 
 
 if __name__ == '__main__':
