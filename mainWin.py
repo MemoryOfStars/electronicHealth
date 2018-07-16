@@ -25,17 +25,31 @@ class mainWin(QtWidgets.QWidget):
     
     #---------------------------------------------------------------#
     #                                                               #
-    #              查找科普文章   点击列表项   响应函数               #
+    #              查找科普文章   点击列表项   查看文章               #
     #                                                               #
     #---------------------------------------------------------------#
     def on_click_seeMoreEssays(self):
         self.widget_searchEssayWin.hide()
         self.win_searchEssay.selectedEssayID = self.win_searchEssay.listWidget.selectedItems()[0].text()
         self.win_seeMoreEssays = seeMoreEssays(self.win_searchEssay.selectedEssayID,self.widget_seeMoreEssays)                 #在当前页面显示想要查看的文章
+        self.win_seeMoreEssays.label_2.setText(self.win_searchEssay.selectedEssayID)
+        self.win_seeMoreEssays.pushButton_backToSearchEssay.clicked.connect(self.on_click_backToSearchEssay)
         self.widget_seeMoreEssays.show()
 
 
+    #---------------------------------------------------------------#
+    #                                                               #
+    #      查看科普文章内容   点击列表项   返回上个界面               #
+    #                                                               #
+    #---------------------------------------------------------------#
+    
+    def on_click_backToSearchEssay(self):
+        self.widget_seeMoreEssays.hide()
 
+        self.widget_searchEssayWin.show()
+
+    
+    
 
 
     
