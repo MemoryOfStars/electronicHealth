@@ -38,16 +38,16 @@ class chattingWin(QtWidgets.QWidget):
         cursor = db.cursor()
         
         cursor.execute(sql)
-        """
+        
         #self.ip_port = cursor.fetchall()[0][0]
         self.ip_port = ('127.0.0.1',9999)
         self.sk = socket.socket()
         
         self.sk.connect(self.ip_port)
-        
+        """
         
         #--------------------医生端---------------------#
-        """
+        
         self.ip_port = ('10.6.94.3',9999)
 
         self.sk = socket.socket()
@@ -59,7 +59,7 @@ class chattingWin(QtWidgets.QWidget):
         t= threading.Thread(target=self.waiting_msg)#创建线程
         t.setDaemon(True)#设置为后台线程，这里默认是False，设置为True之后则主线程不用等待子线程
         t.start()#开启线程
-        """
+        
         
         
         
@@ -78,25 +78,34 @@ class chattingWin(QtWidgets.QWidget):
     def waiting_msg(self):
         
         #-------------------医生端----------------------------#
-        """
+        
         while True:
             print ('server waiting...')
             self.conn,self.addr = self.sk.accept()
 
             while True:
-                data = conn.recv(1024)
+                data = self.conn.recv(1024)
                 #----------------在大的TextEdit里面显示----------------#
-                print(str(data,encoding='utf-8'))
+                #print(str(data,encoding='utf-8'))
+                cursor = self.textEdit_chat.textCursor()
+                cursor.movePosition(QtGui.QTextCursor.End)
         
-            conn.close()
-        """
+                cursor.insertHtml(str(data,encoding='utf-8'))
+                self.textEdit_chat.verticalScrollBar().setValue(self.textEdit_chat.verticalScrollBar().maximumHeight())
+            self.conn.close()
+        
         #------------------患者端-----------------------------#
-        
+        """
         while True:
             reply_msg = self.sk.recv(1024)
             #-------------------在打的TextEdit里面显示-----------------#
-            print(str(reply_msg,encoding='utf-8'))
-    
+            cursor = self.textEdit_chat.textCursor()
+            cursor.movePosition(QtGui.QTextCursor.End)
+            Html = "<b>xxx医生</b>   <font color='blue'>%s</font><br><br><h6>%s<\h6><br><br>" %(datetime.datetime.now(),
+                                                                                              str(reply_msg,encoding='utf-8'))
+        
+            cursor.insertHtml(Html)
+        """
     #--------按 发送 Button 之后，读取输入框的内容并发送给另一端，同时显示在打的TextEdit中--------#
     def on_click_sendMess(self):
         send_mes = self.textEdit_input.document().toPlainText()
@@ -119,11 +128,12 @@ class chattingWin(QtWidgets.QWidget):
         Html = "<b>xxx医生</b>   <font color='blue'>%s</font><br><br><h6>%s<\h6><br><br>" %(datetime.datetime.now(),send_mes)
         
         cursor.insertHtml(Html)
+        self.textEdit_chat.verticalScrollBar().setValue(self.textEdit_chat.verticalScrollBar().maximumHeight())
         self.textEdit_input.setText('')
         self.textEdit_input.setFocus(True)
-        """
-        self.conn.sendall(bytes(Html_to,encoding='utf8'))
-        """
+        
+        self.conn.sendall(bytes(Html,encoding='utf8'))
+        
     
     
     
@@ -138,6 +148,7 @@ class chattingWin(QtWidgets.QWidget):
         self.textEdit_chat.setGeometry(QtCore.QRect(150, 10, 631, 411))
         self.textEdit_chat.setFocus(False)
         self.textEdit_chat.setObjectName("textEdit_chat")
+
         
         
         self.textEdit_input = QtWidgets.QTextEdit(self)
