@@ -222,28 +222,28 @@ if __name__ == '__main__':
 """
 
 
-import socket
+import struct
 
-ip_port = ('10.6.94.3',9997)
-
-sk = socket.socket()
-sk.bind(ip_port)
-sk.listen(5)
-
-while True:
-    print ('server waiting...')
-    conn,addr = sk.accept()
-
-    while True:
-        data = conn.recv(1024)
-        
-        print(str(data,encoding='utf-8'))
-        
-        conn.sendall(bytes("在？KKP",encoding='utf8'))
-            
-    conn.close()
-        
-        
+#ip_port = ('10.6.94.3',9997)
+#
+#sk = socket.socket()
+#sk.bind(ip_port)
+#sk.listen(5)
+#
+#while True:
+#    print ('server waiting...')
+#    conn,addr = sk.accept()
+#
+#    while True:
+#        data = conn.recv(1024)
+#        
+#        print(str(data,encoding='utf-8'))
+#        
+#        conn.sendall(bytes("在？KKP",encoding='utf8'))
+#            
+#    conn.close()
+#        
+print(struct.calcsize('128sl'))
         
         
         

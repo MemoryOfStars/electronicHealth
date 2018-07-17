@@ -33,12 +33,6 @@ class searchEssayWin(QtWidgets.QWidget):
         #-------------search in DataBase---------------------
         
     
-    def on_click_listWidget(self):
-        s
-    
-    
-    
-    
     
     
     

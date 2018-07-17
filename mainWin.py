@@ -13,6 +13,7 @@ from chattingWin import chattingWin
 from searchEssayWin import searchEssayWin
 from seeMoreEssays import seeMoreEssays
 from gradingWin import gradingWin
+from illResume import illResume
 import sys
 
 class mainWin(QtWidgets.QWidget):
@@ -22,7 +23,32 @@ class mainWin(QtWidgets.QWidget):
         
         self.initUI()
         self.widget = QtWidgets.QWidget()
-    
+        
+        
+        
+        
+    #---------------------------------------------------------------#
+    #                                                               #
+    #              患者填写资料   点击按钮   开始选择医生             #
+    #                                                               #
+    #---------------------------------------------------------------#    
+    def on_click_enterSelectDocWin(self):
+        self.widget_illResume.hide()
+        ##连接数据库，写入病情描述信息
+        
+        
+        
+        
+        
+        self.widget_selectDocWin.show()
+        
+        
+        
+        
+        
+        
+        
+        
     #---------------------------------------------------------------#
     #                                                               #
     #              查找科普文章   点击列表项   查看文章               #
@@ -63,7 +89,6 @@ class mainWin(QtWidgets.QWidget):
         self.widget_payingWin.hide()
         self.widget_selectDocWin.show()
         self.widget = chattingWin(self.win_selectDoc.selectedDoc)       #-------应该传医生ID进去（获取医生各种信息）
-        
         self.widget.show()
     
     
@@ -143,6 +168,7 @@ class mainWin(QtWidgets.QWidget):
         self.widget_selectDocWin = QtWidgets.QWidget(self)
         self.widget_selectDocWin.setGeometry(QtCore.QRect(10, 10, 1101, 701))
         self.widget_selectDocWin.setObjectName("widget_selecctDocWin")
+        self.widget_selectDocWin.hide()
         self.selectDocPic = QtGui.QPixmap("19566230_p0.jpg").scaled(self.widget_selectDocWin.rect().size())
         self.widget_selectDocWin_pic = QtWidgets.QLabel(self.widget_selectDocWin)
         self.widget_selectDocWin_pic.setGeometry(QtCore.QRect(0,0,1101,701))
@@ -174,6 +200,13 @@ class mainWin(QtWidgets.QWidget):
         self.widget_seeMoreEssays.setObjectName("widget_seeMoreEssays")
         self.widget_seeMoreEssays.hide()
         
+        
+        self.widget_illResume = QtWidgets.QWidget(self)
+        self.widget_illResume.setGeometry(QtCore.QRect(10, 10, 1101, 701))
+        self.widget_illResume.setObjectName("widget_illResume")
+        self.win_illResume = illResume(self.widget_illResume)
+        self.win_illResume.pushButton_inputCompleted.clicked.connect(self.on_click_enterSelectDocWin)
+        self.widget_illResume.show()
 
         self.retranslateUi()
         QtCore.QMetaObject.connectSlotsByName(self)

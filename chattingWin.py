@@ -11,6 +11,8 @@ from PyQt5.QtGui import QMovie
 from gradingWin import gradingWin
 import time
 import mysql.connector as mc
+import os
+import struct
 
 import threading
 
@@ -48,7 +50,7 @@ class chattingWin(QtWidgets.QWidget):
         
         #--------------------医生端---------------------#
         
-        self.ip_port = ('10.6.94.3',9999)
+        self.ip_port = ('127.0.0.1',9999)
 
         self.sk = socket.socket()
         self.sk.bind(self.ip_port)
@@ -92,7 +94,21 @@ class chattingWin(QtWidgets.QWidget):
         
                 cursor.insertHtml(str(data,encoding='utf-8'))
                 self.textEdit_chat.verticalScrollBar().setValue(self.textEdit_chat.verticalScrollBar().maximumHeight())
+                
+                
+                
             self.conn.close()
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         #------------------患者端-----------------------------#
         """
@@ -133,9 +149,33 @@ class chattingWin(QtWidgets.QWidget):
         self.textEdit_input.setFocus(True)
         
         self.conn.sendall(bytes(Html,encoding='utf8'))
+    """
+    def on_click_sendPic(self):
+        fileinfo_size = struct.calcsize('128sl')
+        buf = self.conn.recv(fileinfo_size)
+        if buf:
+            filename, filesize = struct.unpack('128sl', buf)
+            fn = filename.strip('\00')
+            new_filename = os.path.join('./', 'new_' + fn)
+            print ('file new name is {0}, filesize if {1}'.format(new_filename,
+                                                                 filesize))
+
+            recvd_size = 0  # 定义已接收文件的大小
+            fp = open(new_filename, 'wb')
+            print ('start receiving...')
+
+            while not recvd_size == filesize:
+                if filesize - recvd_size > 1024:
+                    data = self.conn.recv(1024)
+                    recvd_size += len(data)
+                else:
+                    data = self.conn.recv(filesize - recvd_size)
+                    recvd_size = filesize
+                fp.write(data)
+            fp.close()
+            print ('end receive...')
+    """
         
-    
-    
     
     
     def initUI(self):
@@ -156,9 +196,10 @@ class chattingWin(QtWidgets.QWidget):
         self.textEdit_input.setObjectName("textEdit_2")
         self.textEdit_input.setFocus(True)
         
-        self.pushButton_sendPic = QtWidgets.QPushButton(self)
-        self.pushButton_sendPic.setGeometry(QtCore.QRect(150, 430, 93, 28))
-        self.pushButton_sendPic.setObjectName("pushButton")
+        #self.pushButton_sendPic = QtWidgets.QPushButton(self)
+        #self.pushButton_sendPic.setGeometry(QtCore.QRect(150, 430, 93, 28))
+        #self.pushButton_sendPic.setObjectName("pushButton")
+        #self.pushButton_sendPic.clicked.connect(self.on_click_sendPic)
         
         self.pushButton_send = QtWidgets.QPushButton(self)
         self.pushButton_send.setGeometry(QtCore.QRect(260, 430, 93, 28))
@@ -197,7 +238,7 @@ class chattingWin(QtWidgets.QWidget):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.pushButton_sendPic.setText(_translate("Chatting", "发送图片"))
+        #self.pushButton_sendPic.setText(_translate("Chatting", "发送图片"))
         self.pushButton_send.setText(_translate("Chatting", "发送"))
         self.groupBox.setTitle(_translate("Chatting", "医生信息"))
         #self.label_docPic.setText(_translate("Chatting", "pictures here"))
